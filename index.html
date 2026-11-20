@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>学习站导航</title>
+<style>
+  :root { --bg: #111114; --surface: #18181c; --border: #2c2c33; --text: #ececf1; --muted: #9a9aa6; --accent: #8b7cff; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+  main { max-width: 880px; margin: 0 auto; padding: 56px 24px 80px; }
+  .eyebrow { color: var(--accent); font-size: 13px; font-weight: 600; margin: 0 0 6px; }
+  h1 { font-size: 30px; margin: 0 0 8px; }
+  .desc { color: var(--muted); margin: 0 0 36px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+  a.card { display: flex; flex-direction: column; gap: 10px; padding: 22px; border: 1px solid var(--border); border-radius: 16px; background: var(--surface); color: inherit; text-decoration: none; transition: border-color .15s, transform .15s; }
+  a.card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .card-top { display: flex; align-items: center; gap: 12px; }
+  .mark { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; font-weight: 700; font-size: 15px; color: #fff; flex: none; }
+  .card h2 { font-size: 18px; margin: 0; }
+  .card small { color: var(--muted); font-size: 12px; }
+  .card p { margin: 0; color: var(--muted); font-size: 14px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+  .tags span { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: #222229; color: #c4c4ce; }
+  .go { color: var(--accent); font-size: 14px; font-weight: 600; }
+  footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">考试冲刺</p>
+  <h1>学习站导航</h1>
+  <p class="desc">每个站都有讲解、刷题、错题本、模拟考和考前速查。进度分别保存在各自的站里，互不影响。</p>
+  <div class="grid" id="grid"></div>
+  <footer>进度保存在当前浏览器里。换浏览器或换设备前，先在各站的「设置」里导出进度。</footer>
+</main>
+<script>
+// 新增学习站：在这里加一项
+const SITES = [
+  { name: 'Python 综合', sub: '试卷 1', mark: 'Py', color: '#3b7bd6', url: 'https://swt-eriri.github.io/exam-review/',
+    desc: 'Python 基础、函数与异常、SQL / NumPy / pandas、asyncio / FastAPI 等；含两道固定代码大题的专项练习，代码可在浏览器里直接运行。',
+    tags: ['单选', '多选', '简答', '代码题'] },
+  { name: 'Spring 全家桶', sub: '《玩转 Spring 全家桶》123 讲', mark: 'Sp', color: '#4a9d5b', url: 'https://swt-eriri.github.io/spring-review/',
+    desc: '从 Spring 基础、数据访问、事务、Spring MVC，到 Spring Boot 原理与运维，再到 Spring Cloud 微服务。按「认得出」的深度讲，不要求会 Java。',
+    tags: ['20 个模块', '单选', '多选'] },
+];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+document.getElementById('grid').innerHTML = SITES.map(s => `
+  <a class="card" href="${esc(s.url)}">
+    <div class="card-top"><span class="mark" style="background:${esc(s.color)}">${esc(s.mark)}</span>
+      <div><h2>${esc(s.name)}</h2><small>${esc(s.sub)}</small></div></div>
+    <p>${esc(s.desc)}</p>
+    <div class="tags">${s.tags.map(t => `<span>${esc(t)}</span>`).join('')}</div>
+    <span class="go">进入 →</span>
+  </a>`).join('');
+</script>
+</body>
+</html>
