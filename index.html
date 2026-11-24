@@ -40,9 +40,9 @@ const SITES = [
   { name: 'Python 综合', sub: '试卷 1', mark: 'Py', color: '#3b7bd6', url: 'https://swt-eriri.github.io/exam-review/',
     desc: 'Python 基础、函数与异常、SQL / NumPy / pandas、asyncio / FastAPI 等；含两道固定代码大题的专项练习，代码可在浏览器里直接运行。',
     tags: ['单选', '多选', '简答', '代码题'] },
-  { name: 'Spring 全家桶', sub: '《玩转 Spring 全家桶》123 讲', mark: 'Sp', color: '#4a9d5b', url: 'https://swt-eriri.github.io/spring-review/',
-    desc: '从 Spring 基础、数据访问、事务、Spring MVC，到 Spring Boot 原理与运维，再到 Spring Cloud 微服务。按「认得出」的深度讲，不要求会 Java。',
-    tags: ['20 个模块', '单选', '多选'] },
+  { name: '极客时间四门联考', sub: '机器学习 · LangChain · Agent Harness · Spring', mark: 'GK', color: '#7b6cf6', url: 'https://swt-eriri.github.io/geek-review/',
+    desc: '《零基础实战机器学习》《LangChain 实战课》《从 0 开始构建 Agent Harness》《玩转 Spring 全家桶》四门一起复习：每门一页必背清单、讲解、结课测试真题，必刷题 + 混合模拟考。',
+    tags: ['四门课', '结课真题', '单选', '多选'] },
 ];
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 document.getElementById('grid').innerHTML = SITES.map(s => `
